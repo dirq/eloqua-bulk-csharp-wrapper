@@ -5,7 +5,7 @@ namespace Eloqua.Api.Bulk.Clients.Accounts
 {
     public class AccountFieldClient
     {
-        readonly BaseClient _client;
+        private readonly BaseClient _client;
 
         public AccountFieldClient(BaseClient client)
         {
@@ -16,10 +16,10 @@ namespace Eloqua.Api.Bulk.Clients.Accounts
         {
             var request = new RestRequest(Method.GET)
             {
-                Resource = string.Format("/account/fields?search={0}&page={1}&pageSize={2}", searchTerm, page, pageSize)
+                Resource = $"/account/fields?search={searchTerm}&page={page}&pageSize={pageSize}"
             };
 
-            return _client.Execute<SearchResponse<Field>>(request);
+            return _client.Execute<SearchResponse<Field>>(request).Data;
         }
     }
 }

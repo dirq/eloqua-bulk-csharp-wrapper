@@ -1,4 +1,5 @@
 ﻿using Eloqua.Api.Bulk.Clients;
+using Eloqua.Api.Bulk.Validation;
 using RestSharp;
 using RestSharp.Deserializers;
 
@@ -6,42 +7,32 @@ namespace Eloqua.Api.Bulk
 {
     public class BaseClient : RestClient
     {
-        internal RestClient Client { get; set; }
+        private SyncClient _syncClient;
+        private JsonDataClient _jsonDataClient;
 
         protected BaseClient() {}
 
-        public BaseClient(string site, string user, string password, string baseUrl)
+        public BaseClient(string site, string user, string password, string baseUrl) : base(baseUrl)
         {
-            Client = new RestClient
-            {
-                BaseUrl = baseUrl,
-                Authenticator = new HttpBasicAuthenticator(site + "\\" + user, password)
-            };
+            Authenticator = new HttpBasicAuthenticator(site + "\\" + user, password);
 
-            Client.AddHandler("text/plain", new JsonDeserializer());
+            AddHandler("text/plain", new JsonDeserializer());
         }
 
-        internal T Execute<T>(IRestRequest request) where T : new()
+        public override IRestResponse<T> Execute<T>(IRestRequest request)
         {
-            IRestResponse<T> response = Client.Execute<T>(request);
+            IRestResponse<T> response = base.Execute<T>(request);
 
-            if (response.ResponseStatus != ResponseStatus.Completed)
+            if (response.ResponseStatus != ResponseStatus.Completed || (int)response.StatusCode >= 400)
             {
-                throw Validation.ResponseValidator.GetExceptionFromResponse(response);
+                throw ResponseValidator.GetExceptionFromResponse(response);
             }
-            return response.Data;
+
+            return response;
         }
 
-        public SyncClient Syncs
-        {
-            get { return _syncClient ?? (_syncClient = new SyncClient(this)); }
-        }
-        private SyncClient _syncClient;
+        public SyncClient Syncs => _syncClient ?? (_syncClient = new SyncClient(this));
 
-        public JsonDataClient JsonData
-        {
-            get { return _jsonDataClient ?? (_jsonDataClient = new JsonDataClient(this)); }
-        }
-        private JsonDataClient _jsonDataClient;
+        public JsonDataClient JsonData => _jsonDataClient ?? (_jsonDataClient = new JsonDataClient(this));
     }
 }

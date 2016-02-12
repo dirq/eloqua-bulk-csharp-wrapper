@@ -16,10 +16,10 @@ namespace Eloqua.Api.Bulk.Clients.Contacts
         {
             var request = new RestRequest(Method.GET)
             {
-                Resource = string.Format("/contact/fields?search={0}&page={1}&pageSize={2}", searchTerm, page, pageSize)
+                Resource = $"/contact/fields?search={searchTerm}&page={page}&pageSize={pageSize}"
             };
 
-            return _client.Execute<SearchResponse<Field>>(request);
+            return _client.Execute<SearchResponse<Field>>(request).Data;
         }
     }
 }

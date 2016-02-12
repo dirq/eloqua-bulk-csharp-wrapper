@@ -1,39 +1,38 @@
 ﻿using RestSharp;
 using Eloqua.Api.Bulk.Models.Exports;
-using Eloqua.Api.Bulk.Models.Syncs;
 
 namespace Eloqua.Api.Bulk.Clients.Accounts
 {
-    public class AccountExportClient
+    /// <summary>
+    /// Exporter for account objects (untested)
+    /// </summary>
+    public class AccountExportClient : ExportClient
     {
-        readonly BaseClient _client;
-
-        public AccountExportClient(BaseClient client)
+        /// <summary>
+        /// Creates an instance of this class with the provided client
+        /// </summary>
+        /// <param name="client">The client to be used to connect with the Bulk API</param>
+        public AccountExportClient(BaseClient client) : base(client)
         {
-            _client = client;
         }
 
+        /// <summary>
+        /// Creates an export in the resource with URI /account/export. Please note that this has not been tested in
+        /// the Bulk API version 2.
+        /// </summary>
+        /// <param name="export">The export object to be created</param>
+        /// <returns>The newly created export object</returns>
         public Export CreateExport(Export export)
         {
             var request = new RestRequest(Method.POST)
             {
                 Resource = "/account/export",
-                RequestFormat = DataFormat.Json,
-                RootElement = "export"
+                RequestFormat = DataFormat.Json
             };
+
             request.AddBody(export);
 
-            return _client.Execute<Export>(request);
-        }
-
-        public Sync CreateSync(Sync sync)
-        {
-            return _client.Syncs.CreateSync(sync);
-        }
-
-        public IRestResponse ExportData(string exportUri)
-        {
-            return _client.JsonData.ExportData(exportUri);
+            return Client.Execute<Export>(request).Data;
         }
     }
 }

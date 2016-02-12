@@ -16,12 +16,20 @@ namespace Eloqua.Api.Bulk.Clients
         {
             var request = new RestRequest(Method.POST)
             {
-                Resource = "/sync",
+                Resource = "/syncs",
                 RequestFormat = DataFormat.Json
             };
+
             request.AddBody(sync);
 
-            return _client.Execute<Sync>(request);
+            return _client.Execute<Sync>(request).Data;
+        }
+
+        public Sync GetSync(int syncId)
+        {
+            var request = new RestRequest(Method.GET) {Resource = $"/syncs/{syncId}"};
+
+            return _client.Execute<Sync>(request).Data;
         }
     }
 }

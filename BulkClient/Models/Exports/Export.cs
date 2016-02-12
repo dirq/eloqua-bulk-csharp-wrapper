@@ -9,7 +9,7 @@ namespace Eloqua.Api.Bulk.Models.Exports
         public string createdBy { get; set; }
         public DateTime? createdAt { get; set; }
         public Dictionary<string, string> fields { get; set; }
-        public ExportFilter filter { get; set; }
+        public string filter { get; set; }
         public long? kbUsed { get; set; }
         public string name { get; set; }
         public int? secondsToAutoDelete { get; set; }

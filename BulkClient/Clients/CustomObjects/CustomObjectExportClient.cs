@@ -1,39 +1,39 @@
 ﻿using RestSharp;
 using Eloqua.Api.Bulk.Models.Exports;
-using Eloqua.Api.Bulk.Models.Syncs;
 
 namespace Eloqua.Api.Bulk.Clients.CustomObjects
 {
-    public class CustomObjectExportClient
+    /// <summary>
+    /// Exporter for custom objects (untested)
+    /// </summary>
+    public class CustomObjectExportClient : ExportClient
     {
-        readonly BaseClient _client;
-
-        public CustomObjectExportClient(BaseClient client)
+        /// <summary>
+        /// Creates an instance of this class with the provided client
+        /// </summary>
+        /// <param name="client">The client to be used to connect with the Bulk API</param>
+        public CustomObjectExportClient(BaseClient client) : base(client)
         {
-            _client = client;
         }
 
+        /// <summary>
+        /// Creates an export in the resource with URI /customObject/<see cref="customObjectId"/>/export. Please note
+        /// that this has not been tested in the Bulk API version 2.
+        /// </summary>
+        /// <param name="export">The export object to be created</param>
+        /// <param name="customObjectId">The unique identifier of the custom object</param>
+        /// <returns>The newly created export object</returns>
         public Export CreateExport(Export export, int customObjectId)
         {
             var request = new RestRequest(Method.POST)
             {
-                Resource = string.Format("/customObject/{0}/export", customObjectId),
-                RequestFormat = DataFormat.Json,
-                RootElement = "export"
+                Resource = $"/customObject/{customObjectId}/export",
+                RequestFormat = DataFormat.Json
             };
+
             request.AddBody(export);
 
-            return _client.Execute<Export>(request);
-        }
-
-        public Sync CreateSync(Sync sync)
-        {
-            return _client.Syncs.CreateSync(sync);
-        }
-
-        public IRestResponse ExportData(string exportUri)
-        {
-            return _client.JsonData.ExportData(exportUri);
+            return Client.Execute<Export>(request).Data;
         }
     }
 }

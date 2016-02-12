@@ -7,7 +7,7 @@ namespace Eloqua.Api.Bulk.Clients.Contacts
 {
     public class ContactFilterClient
     {
-        readonly BaseClient _client;
+        private readonly BaseClient _client;
 
         public ContactFilterClient(BaseClient client)
         {
@@ -18,10 +18,12 @@ namespace Eloqua.Api.Bulk.Clients.Contacts
         {
             var request = new RestRequest(Method.GET)
             {
-                Resource = string.Format("/contact/fields?search={0}&page={1}&pageSize={2}", searchTerm, page, pageSize)
+                Resource = $"/contact/fields?search={searchTerm}&page={page}&pageSize={pageSize}"
             };
 
-            IRestResponse<SearchResponse<ContactFilter>> response = _client.Get<SearchResponse<ContactFilter>>(request);
+            IRestResponse<SearchResponse<ContactFilter>> response =
+                _client.Get<SearchResponse<ContactFilter>>(request);
+
             return response.Data.elements;
         }
     }

@@ -4,9 +4,9 @@ namespace Eloqua.Api.Bulk.Clients
 {
     public class JsonDataClient
     {
-        readonly BaseClient _client;
+        readonly RestClient _client;
 
-        public JsonDataClient(BaseClient client)
+        public JsonDataClient(RestClient client)
         {
             _client = client;
         }
