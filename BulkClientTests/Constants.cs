@@ -5,6 +5,6 @@
         internal static string Site = string.Empty;
         internal static string User = string.Empty;
         internal static string Passwd = string.Empty;
-        internal static string ApiVersion = "1.0";
+        internal static string ApiVersion = "2.0";
     }
 }

@@ -2,9 +2,9 @@
 {
     public class ExportFilter
     {
-        public string comparisonValue { get; set; }
-        public FilterRuleType? filterRule { get; set; }
-        public string membershipUri { get; set; }
-        public string value { get; set; }
+        public string ComparisonValue { get; set; }
+        public FilterRuleType? FilterRule { get; set; }
+        public string MembershipUri { get; set; }
+        public string Value { get; set; }
     }
 }

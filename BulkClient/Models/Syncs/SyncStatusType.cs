@@ -2,10 +2,10 @@
 {
     public enum SyncStatusType
     {
-        pending = 0,
-        active = 1,
-        success = 2,
-        warning = 3,
-        error = 4
+        Pending = 0,
+        Active = 1,
+        Success = 2,
+        Warning = 3,
+        Error = 4
     }
 }

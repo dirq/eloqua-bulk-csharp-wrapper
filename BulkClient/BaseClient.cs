@@ -1,6 +1,7 @@
 ﻿using Eloqua.Api.Bulk.Clients;
 using Eloqua.Api.Bulk.Validation;
 using RestSharp;
+using RestSharp.Authenticators;
 using RestSharp.Deserializers;
 
 namespace Eloqua.Api.Bulk
@@ -17,6 +18,7 @@ namespace Eloqua.Api.Bulk
             Authenticator = new HttpBasicAuthenticator(site + "\\" + user, password);
 
             AddHandler("text/plain", new JsonDeserializer());
+            SimpleJson.CurrentJsonSerializerStrategy = new CamelCaseSerializer();
         }
 
         public override IRestResponse<T> Execute<T>(IRestRequest request)

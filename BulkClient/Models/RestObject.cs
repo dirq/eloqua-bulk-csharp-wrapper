@@ -2,8 +2,8 @@
 {
     public class RestObject : IIdentifiable
     {
-        public int? id { get; set; }
-        public string name { get; set; }
-        public string type;
+        public int? Id { get; set; }
+        public string Name { get; set; }
+        public string Type;
     }
 }

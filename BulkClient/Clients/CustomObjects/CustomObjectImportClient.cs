@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Eloqua.Api.Bulk.Models;
 using Eloqua.Api.Bulk.Models.Imports;
 using Eloqua.Api.Bulk.Models.Syncs;
 using RestSharp;

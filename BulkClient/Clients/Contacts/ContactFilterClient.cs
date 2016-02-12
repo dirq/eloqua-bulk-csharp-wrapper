@@ -24,7 +24,7 @@ namespace Eloqua.Api.Bulk.Clients.Contacts
             IRestResponse<SearchResponse<ContactFilter>> response =
                 _client.Get<SearchResponse<ContactFilter>>(request);
 
-            return response.Data.elements;
+            return response.Data.Elements;
         }
     }
 }

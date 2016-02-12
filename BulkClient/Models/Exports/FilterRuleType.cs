@@ -2,16 +2,16 @@
 {
     public enum FilterRuleType
     {
-        member = 0,
-        pendingMember = 1,
-        activeMember = 2,
-        subscribedMember = 3,
-        unsubscribedMember = 4,
-        valueEqualsComparisonValue,
-        valueDoesNotEqualComparisonValue,
-        valueGreaterThanComparisonValue,
-        valueGreaterThanOrEqualToComparisonValue,
-        valueLessThanComparisonValue,
-        valueLessThanOrEqualToComparisonValue
+        Member = 0,
+        PendingMember = 1,
+        ActiveMember = 2,
+        SubscribedMember = 3,
+        UnsubscribedMember = 4,
+        ValueEqualsComparisonValue,
+        ValueDoesNotEqualComparisonValue,
+        ValueGreaterThanComparisonValue,
+        ValueGreaterThanOrEqualToComparisonValue,
+        ValueLessThanComparisonValue,
+        ValueLessThanOrEqualToComparisonValue
     }
 }

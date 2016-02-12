@@ -2,9 +2,9 @@
 {
     public enum RuleType
     {
-        always,
-        ifNewIsNotNull,
-        ifExistingIsNull,
-        useFieldRule,
+        Always,
+        IfNewIsNotNull,
+        IfExistingIsNull,
+        UseFieldRule,
     }
 }

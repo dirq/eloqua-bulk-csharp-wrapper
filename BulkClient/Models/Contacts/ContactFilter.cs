@@ -4,13 +4,13 @@ namespace Eloqua.Api.Bulk.Models.Contacts
 {
     public class ContactFilter
     {
-        public int? count { get; set; }
-        public string createdBy { get; set; }
-        public DateTime? createdAt { get; set; }
-        public string name { get; set; }
-        public DateTime? executedAt { get; set; }
-        public string updatedBy { get; set; }
-        public DateTime? updatedAt { get; set; }
-        public string uri { get; set; }
+        public int? Count { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public string Name { get; set; }
+        public DateTime? ExecutedAt { get; set; }
+        public string UpdatedBy { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public string Uri { get; set; }
     }
 }

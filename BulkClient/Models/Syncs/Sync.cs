@@ -4,12 +4,12 @@ namespace Eloqua.Api.Bulk.Models.Syncs
 {
     public class Sync
     {
-        public DateTime? createdAt { get; set; }
-        public string createdBy { get; set; }
-        public SyncStatusType? status { get; set; }
-        public string syncedInstanceUri { get; set; }
-        public DateTime? syncEndedAt { get; set; }
-        public DateTime? syncStartedAt { get; set; }
-        public string uri { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public string CreatedBy { get; set; }
+        public SyncStatusType? Status { get; set; }
+        public string SyncedInstanceUri { get; set; }
+        public DateTime? SyncEndedAt { get; set; }
+        public DateTime? SyncStartedAt { get; set; }
+        public string Uri { get; set; }
     }
 }

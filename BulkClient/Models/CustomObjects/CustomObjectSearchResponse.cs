@@ -4,12 +4,12 @@ namespace Eloqua.Api.Bulk.Models.CustomObjects
 {
     public class CustomObjectSearchResponse
     {
-        public DateTime? createdAt { get; set; }
-        public string createdBy { get; set; }
-        public string displayNameFieldUri { get; set; }
-        public string emailAddressFieldUri { get; set; }
-        public string name { get; set; }
-        public string uniqueFieldUri { get; set; }
-        public string uri { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public string CreatedBy { get; set; }
+        public string DisplayNameFieldUri { get; set; }
+        public string EmailAddressFieldUri { get; set; }
+        public string Name { get; set; }
+        public string UniqueFieldUri { get; set; }
+        public string Uri { get; set; }
     }
 }

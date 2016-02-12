@@ -2,7 +2,7 @@
 {
     public class SyncAction
     {
-        public SyncActionType? action { get; set; }
-        public string destinationUri { get; set; }
+        public SyncActionType? Action { get; set; }
+        public string DestinationUri { get; set; }
     }
 }

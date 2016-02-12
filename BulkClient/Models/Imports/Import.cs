@@ -5,16 +5,16 @@ namespace Eloqua.Api.Bulk.Models.Imports
 {
     public class Import
     {
-        public Dictionary<string, string> fields { get; set; }
-        public string importPriorityUri { get; set; }
-        public string identifierFieldName { get; set; }
-        public bool isSyncTriggeredOnImport { get; set; }
-        public long? kbUsed { get; set; }
-        public string name { get; set; }
-        public int? secondsToRetainData { get; set; }
-        public int? secondsToAutoDelete { get; set; }
-        public List<SyncAction> syncActions { get; set; }
-        public RuleType? updateRule { get; set; }
-        public string uri { get; set; }
+        public Dictionary<string, string> Fields { get; set; }
+        public string ImportPriorityUri { get; set; }
+        public string IdentifierFieldName { get; set; }
+        public bool IsSyncTriggeredOnImport { get; set; }
+        public long? KbUsed { get; set; }
+        public string Name { get; set; }
+        public int? SecondsToRetainData { get; set; }
+        public int? SecondsToAutoDelete { get; set; }
+        public List<SyncAction> SyncActions { get; set; }
+        public RuleType? UpdateRule { get; set; }
+        public string Uri { get; set; }
     }
 }

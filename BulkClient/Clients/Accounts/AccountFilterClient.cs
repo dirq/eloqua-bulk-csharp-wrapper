@@ -24,7 +24,7 @@ namespace Eloqua.Api.Bulk.Clients.Accounts
             IRestResponse<SearchResponse<AccountFilter>> response =
                 _client.Get<SearchResponse<AccountFilter>>(request);
 
-            return response.Data.elements;
+            return response.Data.Elements;
         }
     }
 }

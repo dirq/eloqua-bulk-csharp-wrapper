@@ -13,14 +13,15 @@ namespace Eloqua.Api.Bulk.Tests.Contacts
         {
             var accountInfo = BulkClient.GetAccountInfo(Constants.Site, Constants.User, Constants.Passwd);
 
-            _client = new BulkClient(Constants.Site, Constants.User, Constants.Passwd, Helpers.BulkEndpoint(accountInfo));
+            _client =
+                new BulkClient(Constants.Site, Constants.User, Constants.Passwd, Helpers.BulkEndpoint(accountInfo));
         }
 
         [Test]
         public void GetContactFieldsTest()
         {
             SearchResponse<Field> fields = _client.ContactFields.Search("*", 1, 1);
-            Assert.AreEqual(1, fields.total);
+            Assert.AreEqual(1, fields.Total);
         }
     }
 }
