@@ -1,30 +1,17 @@
-﻿using RestSharp;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Eloqua.Api.Bulk.Clients.Base;
 using Eloqua.Api.Bulk.Models;
-using Eloqua.Api.Bulk.Models.Contacts;
 
 namespace Eloqua.Api.Bulk.Clients.Contacts
 {
-    public class ContactFilterClient
+    public class ContactFilterClient : FilterClient
     {
-        private readonly BaseClient _client;
-
-        public ContactFilterClient(BaseClient client)
+        public ContactFilterClient(BaseClient client) : base(client)
         {
-            _client = client;
         }
 
-        public List<ContactFilter> Search(string searchTerm, int page, int pageSize)
-        {
-            var request = new RestRequest(Method.GET)
-            {
-                Resource = $"/contact/fields?search={searchTerm}&page={page}&pageSize={pageSize}"
-            };
-
-            IRestResponse<SearchResponse<ContactFilter>> response =
-                _client.Get<SearchResponse<ContactFilter>>(request);
-
-            return response.Data.Elements;
-        }
+        public async Task<List<Filter>> SearchAsync(string searchTerm, int page, int pageSize) =>
+            await base.SearchAsync(searchTerm, page, pageSize, "contact");
     }
 }

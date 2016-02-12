@@ -1,4 +1,6 @@
-﻿using Eloqua.Api.Bulk.Models.Imports;
+﻿using System.Threading.Tasks;
+using Eloqua.Api.Bulk.Clients.Base;
+using Eloqua.Api.Bulk.Models.Imports;
 
 namespace Eloqua.Api.Bulk.Clients.Accounts
 {
@@ -8,6 +10,6 @@ namespace Eloqua.Api.Bulk.Clients.Accounts
         {
         }
 
-        public Import CreateImport(Import import) => base.CreateImport(import, "account");
+        public async Task<Import> CreateImportAsync(Import import) => await base.CreateImportAsync(import, "account");
     }
 }

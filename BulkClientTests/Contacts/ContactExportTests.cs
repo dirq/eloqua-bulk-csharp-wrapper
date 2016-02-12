@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System.Threading.Tasks;
+using NUnit.Framework;
 using Eloqua.Api.Bulk.Models.Exports;
+using Eloqua.Api.Bulk.Models.Login;
 
 namespace Eloqua.Api.Bulk.Tests.Contacts
 {
@@ -9,18 +11,20 @@ namespace Eloqua.Api.Bulk.Tests.Contacts
         private BulkClient _client;
 
         [TestFixtureSetUp]
-        public void Init()
+        public async Task Init()
         {
-            var accountInfo = BulkClient.GetAccountInfo(Constants.Site, Constants.User, Constants.Passwd);
+            AccountInfo accountInfo =
+                await BulkClient.GetAccountInfoAsync(Constants.Site, Constants.User, Constants.Passwd);
 
             _client =
                 new BulkClient(Constants.Site, Constants.User, Constants.Passwd, Helpers.BulkEndpoint(accountInfo));
         }
 
         [Test]
-        public void CreateExportTest()
+        public async Task CreateExportTest()
         {
-            var export = _client.ContactExport.CreateExport(new Export());
+            Export export = await _client.ContactExport.CreateExportAsync(new Export());
+
             Assert.IsNotNull(export);
         }
     }

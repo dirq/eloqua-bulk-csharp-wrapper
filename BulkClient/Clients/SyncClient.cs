@@ -1,4 +1,5 @@
-﻿using Eloqua.Api.Bulk.Models.Syncs;
+﻿using System.Threading.Tasks;
+using Eloqua.Api.Bulk.Models.Syncs;
 using RestSharp;
 
 namespace Eloqua.Api.Bulk.Clients
@@ -12,7 +13,7 @@ namespace Eloqua.Api.Bulk.Clients
             _client = client;
         }
 
-        public Sync CreateSync(Sync sync)
+        public async Task<Sync> CreateSyncAsync(Sync sync)
         {
             var request = new RestRequest(Method.POST)
             {
@@ -22,14 +23,18 @@ namespace Eloqua.Api.Bulk.Clients
 
             request.AddBody(sync);
 
-            return _client.Execute<Sync>(request).Data;
+            IRestResponse<Sync> syncResponse = await _client.ExecuteTaskAsync<Sync>(request);
+
+            return syncResponse.Data;
         }
 
-        public Sync GetSync(int syncId)
+        public async Task<Sync> GetSyncAsync(int syncId)
         {
             var request = new RestRequest(Method.GET) {Resource = $"/syncs/{syncId}"};
 
-            return _client.Execute<Sync>(request).Data;
+            IRestResponse<Sync> syncResponse = await _client.ExecuteTaskAsync<Sync>(request);
+
+            return syncResponse.Data;
         }
     }
 }

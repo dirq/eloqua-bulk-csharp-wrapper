@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System.Threading.Tasks;
+using NUnit.Framework;
 using Eloqua.Api.Bulk.Models;
+using Eloqua.Api.Bulk.Models.Login;
 
 
 namespace Eloqua.Api.Bulk.Tests.CustomObjects
@@ -10,18 +12,20 @@ namespace Eloqua.Api.Bulk.Tests.CustomObjects
         private BulkClient _client;
 
         [TestFixtureSetUp]
-        public void Init()
+        public async Task Init()
         {
-            var accountInfo = BulkClient.GetAccountInfo(Constants.Site, Constants.User, Constants.Passwd);
+            AccountInfo accountInfo =
+                await BulkClient.GetAccountInfoAsync(Constants.Site, Constants.User, Constants.Passwd);
 
             _client =
                 new BulkClient(Constants.Site, Constants.User, Constants.Passwd, Helpers.BulkEndpoint(accountInfo));
         }
 
         [Test]
-        public void GetContactFieldsTest()
+        public async Task GetContactFieldsTest()
         {
-            SearchResponse<Field> fields = _client.CustomObjectFields.Search(1, "*", 1, 1);
+            SearchResponse<Field> fields = await _client.CustomObjectFields.SearchAsync(1, "*", 1, 1);
+
             Assert.AreEqual(1, fields.Total);
         }
     }

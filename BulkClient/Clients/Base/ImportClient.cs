@@ -1,9 +1,10 @@
-﻿using Eloqua.Api.Bulk.Models;
+﻿using System.Threading.Tasks;
+using Eloqua.Api.Bulk.Models;
 using Eloqua.Api.Bulk.Models.Imports;
 using Eloqua.Api.Bulk.Models.Syncs;
 using RestSharp;
 
-namespace Eloqua.Api.Bulk.Clients
+namespace Eloqua.Api.Bulk.Clients.Base
 {
     public abstract class ImportClient
     {
@@ -14,7 +15,7 @@ namespace Eloqua.Api.Bulk.Clients
             Client = client;
         }
 
-        public virtual Import CreateImport(Import import, string resourceName)
+        public virtual async Task<Import> CreateImportAsync(Import import, string resourceName)
         {
             var request = new RestRequest(Method.POST)
             {
@@ -25,10 +26,12 @@ namespace Eloqua.Api.Bulk.Clients
 
             request.AddBody(import);
 
-            return Client.Execute<Import>(request).Data;
+            IRestResponse<Import> importResponse = await Client.ExecuteTaskAsync<Import>(request);
+
+            return importResponse.Data;
         }
 
-        public SearchResponse<SyncResult> CheckSyncResult(string syncUri)
+        public async Task<SearchResponse<SyncResult>> CheckSyncResultAsync(string syncUri)
         {
             var request = new RestRequest(Method.GET)
             {
@@ -36,7 +39,10 @@ namespace Eloqua.Api.Bulk.Clients
                 RequestFormat = DataFormat.Json
             };
 
-            return Client.Execute<SearchResponse<SyncResult>>(request).Data;
+            IRestResponse<SearchResponse<SyncResult>> restResponse =
+                await Client.ExecuteTaskAsync<SearchResponse<SyncResult>>(request);
+
+            return restResponse.Data;
         }
     }
 }

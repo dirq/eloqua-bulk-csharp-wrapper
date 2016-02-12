@@ -1,4 +1,5 @@
-﻿using Eloqua.Api.Bulk.Clients;
+﻿using System.Threading.Tasks;
+using Eloqua.Api.Bulk.Clients;
 using Eloqua.Api.Bulk.Validation;
 using RestSharp;
 using RestSharp.Authenticators;
@@ -21,9 +22,9 @@ namespace Eloqua.Api.Bulk
             SimpleJson.CurrentJsonSerializerStrategy = new CamelCaseSerializer();
         }
 
-        public override IRestResponse<T> Execute<T>(IRestRequest request)
+        public override async Task<IRestResponse<T>> ExecuteTaskAsync<T>(IRestRequest request)
         {
-            IRestResponse<T> response = base.Execute<T>(request);
+            IRestResponse<T> response = await base.ExecuteTaskAsync<T>(request);
 
             if (response.ResponseStatus != ResponseStatus.Completed || (int)response.StatusCode >= 400)
             {

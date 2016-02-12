@@ -1,4 +1,5 @@
-﻿using Eloqua.Api.Bulk.Models;
+﻿using System.Threading.Tasks;
+using Eloqua.Api.Bulk.Models;
 using RestSharp;
 
 namespace Eloqua.Api.Bulk.Clients.CustomObjects
@@ -12,7 +13,7 @@ namespace Eloqua.Api.Bulk.Clients.CustomObjects
             _client = client;
         }
 
-        public SearchResponse<Field> Search(int customObjectId, string searchTerm, int page, int pageSize)
+        public async Task<SearchResponse<Field>> SearchAsync(int customObjectId, string searchTerm, int page, int pageSize)
         {
             var request = new RestRequest(Method.GET)
             {
@@ -20,7 +21,10 @@ namespace Eloqua.Api.Bulk.Clients.CustomObjects
                     $"/customObject/{customObjectId}/fields??search={searchTerm}&page={page}&pageSize={pageSize}"
             };
 
-            return _client.Execute<SearchResponse<Field>>(request).Data;
+            IRestResponse<SearchResponse<Field>> fieldSearchResponse =
+                await _client.ExecuteTaskAsync<SearchResponse<Field>>(request);
+
+            return fieldSearchResponse.Data;
         }
     }
 }

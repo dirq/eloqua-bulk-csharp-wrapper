@@ -1,4 +1,5 @@
-﻿using Eloqua.Api.Bulk.Clients;
+﻿using System.Threading.Tasks;
+using Eloqua.Api.Bulk.Clients;
 using RestSharp;
 using Eloqua.Api.Bulk.Clients.Accounts;
 using Eloqua.Api.Bulk.Clients.Activities;
@@ -41,7 +42,7 @@ namespace Eloqua.Api.Bulk
         /// <param name="password">The password of the account. This is the same used to access Eloqua website.</param>
         /// <param name="baseUrl">
         /// The base URL for the requests. This is something like https://secure.p01.eloqua.com/API/Bulk/2.0/. You can
-        /// get the right one for a given account with <see cref="GetAccountInfo"/> method.
+        /// get the right one for a given account with <see cref="GetAccountInfoAsync"/> method.
         /// </param>
         public BulkClient(string site, string user, string password, string baseUrl)
         {
@@ -58,11 +59,14 @@ namespace Eloqua.Api.Bulk
         /// <param name="user">The username. This is the same used to access Eloqua website.</param>
         /// <param name="password">The password of the account. This is the same used to access Eloqua website.</param>
         /// <returns>The information for the given account. It is directly retrieved from Eloqua.</returns>
-        public static AccountInfo GetAccountInfo(string site, string user, string password)
+        public static async Task<AccountInfo> GetAccountInfoAsync(string site, string user, string password)
         {
             var client = new BaseClient(site, user, password, "https://login.eloqua.com");
 
-            return client.Execute<AccountInfo>(new RestRequest("id", Method.GET)).Data;
+            IRestResponse<AccountInfo> responseAccountInfo =
+                await client.ExecuteTaskAsync<AccountInfo>(new RestRequest("id", Method.GET));
+
+            return responseAccountInfo.Data;
         }
 
         /// <summary>

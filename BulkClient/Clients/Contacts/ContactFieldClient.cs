@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using System.Threading.Tasks;
+using RestSharp;
 using Eloqua.Api.Bulk.Models;
 
 namespace Eloqua.Api.Bulk.Clients.Contacts
@@ -12,14 +13,17 @@ namespace Eloqua.Api.Bulk.Clients.Contacts
             _client = client;
         }
 
-        public SearchResponse<Field> Search(string searchTerm, int page, int pageSize)
+        public async Task<SearchResponse<Field>> SearchAsync(string searchTerm, int page, int pageSize)
         {
             var request = new RestRequest(Method.GET)
             {
                 Resource = $"/contact/fields?search={searchTerm}&page={page}&pageSize={pageSize}"
             };
 
-            return _client.Execute<SearchResponse<Field>>(request).Data;
+            IRestResponse<SearchResponse<Field>> fieldSearchResponse =
+                await _client.ExecuteTaskAsync<SearchResponse<Field>>(request);
+
+            return fieldSearchResponse.Data;
         }
     }
 }

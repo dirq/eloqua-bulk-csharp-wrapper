@@ -1,8 +1,9 @@
 ﻿using System.IO;
 using System.Net;
+using System.Threading.Tasks;
 using Eloqua.Api.Bulk.Authentication;
 
-namespace Eloqua.Api.Bulk.Clients
+namespace Eloqua.Api.Bulk.Clients.Base
 {
     public abstract class ImportCsvClient : ImportClient
     {
@@ -10,7 +11,7 @@ namespace Eloqua.Api.Bulk.Clients
         {
         }
 
-        public void ImportDataFromCsv(string importUri, string fileToUpload, string username, string password)
+        public async Task ImportDataFromCsvAsync(string importUri, string fileToUpload, string username, string password)
         {
             using (FileStream fileStream = new FileStream(fileToUpload, FileMode.Open))
             {
@@ -21,14 +22,14 @@ namespace Eloqua.Api.Bulk.Clients
                 httpWebRequest.AllowWriteStreamBuffering = true;
                 httpWebRequest.Headers.Add("Authorization", BasicAuthentication.BuildAuthHeader(username, password));
 
-                using (Stream reqStream = httpWebRequest.GetRequestStream())
+                using (Stream reqStream = await httpWebRequest.GetRequestStreamAsync())
                 {
                     byte[] inData = new byte[fileStream.Length];
 
                     reqStream.Write(inData, 0, (int)fileStream.Length);
 
                     fileStream.Close();
-                    httpWebRequest.GetResponse();
+                    await httpWebRequest.GetResponseAsync();
                 }
             }
         }

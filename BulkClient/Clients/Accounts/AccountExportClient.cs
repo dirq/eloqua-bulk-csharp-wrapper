@@ -1,4 +1,6 @@
-﻿using RestSharp;
+﻿using System.Threading.Tasks;
+using Eloqua.Api.Bulk.Clients.Base;
+using RestSharp;
 using Eloqua.Api.Bulk.Models.Exports;
 
 namespace Eloqua.Api.Bulk.Clients.Accounts
@@ -22,7 +24,7 @@ namespace Eloqua.Api.Bulk.Clients.Accounts
         /// </summary>
         /// <param name="export">The export object to be created</param>
         /// <returns>The newly created export object</returns>
-        public Export CreateExport(Export export)
+        public async Task<Export> CreateExportAsync(Export export)
         {
             var request = new RestRequest(Method.POST)
             {
@@ -32,7 +34,9 @@ namespace Eloqua.Api.Bulk.Clients.Accounts
 
             request.AddBody(export);
 
-            return Client.Execute<Export>(request).Data;
+            IRestResponse<Export> exportResponse = await Client.ExecuteTaskAsync<Export>(request);
+
+            return exportResponse.Data;
         }
     }
 }

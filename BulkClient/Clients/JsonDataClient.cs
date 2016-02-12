@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using System.Threading.Tasks;
+using RestSharp;
 
 namespace Eloqua.Api.Bulk.Clients
 {
@@ -11,7 +12,7 @@ namespace Eloqua.Api.Bulk.Clients
             _client = client;
         }
 
-        public IRestResponse ExportData(string exportUri)
+        public async Task<IRestResponse> ExportDataAsync(string exportUri)
         {
             var request = new RestRequest
             {
@@ -19,7 +20,7 @@ namespace Eloqua.Api.Bulk.Clients
                 RequestFormat = DataFormat.Json
             };
 
-            return _client.Execute(request);
+            return await _client.ExecuteTaskAsync(request);
         }
     }
 }

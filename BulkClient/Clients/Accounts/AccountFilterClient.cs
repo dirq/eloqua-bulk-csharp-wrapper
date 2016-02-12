@@ -1,30 +1,17 @@
-﻿using RestSharp;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Eloqua.Api.Bulk.Clients.Base;
 using Eloqua.Api.Bulk.Models;
-using Eloqua.Api.Bulk.Models.Accounts;
 
 namespace Eloqua.Api.Bulk.Clients.Accounts
 {
-    public class AccountFilterClient
+    public class AccountFilterClient : FilterClient
     {
-        private readonly BaseClient _client;
-
-        public AccountFilterClient(BaseClient client)
+        public AccountFilterClient(BaseClient client) : base(client)
         {
-            _client = client;
         }
 
-        public List<AccountFilter> Search(string searchTerm, int page, int pageSize)
-        {
-            var request = new RestRequest(Method.GET)
-            {
-                Resource = $"/account/fields?search={searchTerm}&page={page}&pageSize={pageSize}"
-            };
-
-            IRestResponse<SearchResponse<AccountFilter>> response =
-                _client.Get<SearchResponse<AccountFilter>>(request);
-
-            return response.Data.Elements;
-        }
+        public async Task<List<Filter>> SearchAsync(string searchTerm, int page, int pageSize) =>
+            await base.SearchAsync(searchTerm, page, pageSize, "account");
     }
 }

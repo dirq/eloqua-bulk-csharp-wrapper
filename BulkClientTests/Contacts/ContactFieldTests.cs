@@ -1,4 +1,6 @@
-﻿using Eloqua.Api.Bulk.Models;
+﻿using System.Threading.Tasks;
+using Eloqua.Api.Bulk.Models;
+using Eloqua.Api.Bulk.Models.Login;
 using NUnit.Framework;
 
 namespace Eloqua.Api.Bulk.Tests.Contacts
@@ -9,18 +11,20 @@ namespace Eloqua.Api.Bulk.Tests.Contacts
         private BulkClient _client;
 
         [TestFixtureSetUp]
-        public void Init()
+        public async Task Init()
         {
-            var accountInfo = BulkClient.GetAccountInfo(Constants.Site, Constants.User, Constants.Passwd);
+            AccountInfo accountInfo =
+                await BulkClient.GetAccountInfoAsync(Constants.Site, Constants.User, Constants.Passwd);
 
             _client =
                 new BulkClient(Constants.Site, Constants.User, Constants.Passwd, Helpers.BulkEndpoint(accountInfo));
         }
 
         [Test]
-        public void GetContactFieldsTest()
+        public async Task GetContactFieldsTest()
         {
-            SearchResponse<Field> fields = _client.ContactFields.Search("*", 1, 1);
+            SearchResponse<Field> fields = await _client.ContactFields.SearchAsync("*", 1, 1);
+
             Assert.AreEqual(1, fields.Total);
         }
     }
