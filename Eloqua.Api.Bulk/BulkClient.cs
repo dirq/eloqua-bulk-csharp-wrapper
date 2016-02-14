@@ -17,6 +17,8 @@ namespace Eloqua.Api.Bulk
         private readonly BaseClient _baseClient;
 
         private ExportClient _exportClient;
+
+        private ContactExportClient _contactExportClient;
         private ContactFieldClient _contactFieldClient;
         private ContactFilterClient _contactFilterClient;
         private ContactImportClient _contactImportClient;
@@ -91,6 +93,12 @@ namespace Eloqua.Api.Bulk
         /// </summary>
         public ContactFieldClient ContactFields =>
             _contactFieldClient ?? (_contactFieldClient = new ContactFieldClient(_baseClient));
+
+        /// <summary>
+        /// Default <see cref="ContactExportClient"/>
+        /// </summary>
+        public ContactExportClient ContactExport =>
+            _contactExportClient ?? (_contactExportClient = new ContactExportClient(_baseClient));
 
         /// <summary>
         /// Default <see cref="ContactFilterClient"/>
