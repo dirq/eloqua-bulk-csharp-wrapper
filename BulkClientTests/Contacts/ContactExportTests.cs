@@ -23,7 +23,7 @@ namespace Eloqua.Api.Bulk.Tests.Contacts
         [Test]
         public async Task CreateExportTest()
         {
-            Export export = await _client.ContactExport.CreateExportAsync(new Export());
+            Export export = await _client.ExportClient.CreateExportAsync(new Export(), string.Empty);
 
             Assert.IsNotNull(export);
         }

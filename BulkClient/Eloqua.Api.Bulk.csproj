@@ -63,6 +63,7 @@
     <Compile Include="Clients\Accounts\AccountImportClient.cs" />
     <Compile Include="Clients\Activities\ActivityExportClient.cs" />
     <Compile Include="Clients\Base\FilterClient.cs" />
+    <Compile Include="Clients\BulkUrl.cs" />
     <Compile Include="Clients\Contacts\ContactExportClient.cs" />
     <Compile Include="Clients\Contacts\ContactFieldClient.cs" />
     <Compile Include="Clients\Contacts\ContactFilterClient.cs" />
@@ -70,7 +71,7 @@
     <Compile Include="Clients\CustomObjects\CustomObjectClient.cs" />
     <Compile Include="Clients\CustomObjects\CustomObjectExportClient.cs" />
     <Compile Include="Clients\CustomObjects\CustomObjectImportClient.cs" />
-    <Compile Include="Clients\Base\ExportClient.cs" />
+    <Compile Include="Clients\ExportClient.cs" />
     <Compile Include="Clients\Base\ImportClient.cs" />
     <Compile Include="Clients\Base\ImportCsvClient.cs" />
     <Compile Include="Clients\JsonDataClient.cs" />

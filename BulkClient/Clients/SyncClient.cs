@@ -17,7 +17,7 @@ namespace Eloqua.Api.Bulk.Clients
         {
             var request = new RestRequest(Method.POST)
             {
-                Resource = "/syncs",
+                Resource = BulkUrl.Syncs,
                 RequestFormat = DataFormat.Json
             };
 

@@ -16,9 +16,9 @@ namespace Eloqua.Api.Bulk
     {
         private readonly BaseClient _baseClient;
 
+        private ExportClient _exportClient;
         private ContactFieldClient _contactFieldClient;
         private ContactFilterClient _contactFilterClient;
-        private ContactExportClient _contactExportClient;
         private ContactImportClient _contactImportClient;
         private ActivityExportClient _activityExportClient;
 
@@ -28,7 +28,6 @@ namespace Eloqua.Api.Bulk
 
         private AccountFieldClient _accountFieldClient;
         private AccountFilterClient _accountFilterClient;
-        private AccountExportClient _accountExportClient;
         private AccountImportClient _accountImportClient;
 
         /// <summary>
@@ -61,7 +60,7 @@ namespace Eloqua.Api.Bulk
         /// <returns>The information for the given account. It is directly retrieved from Eloqua.</returns>
         public static async Task<AccountInfo> GetAccountInfoAsync(string site, string user, string password)
         {
-            var client = new BaseClient(site, user, password, "https://login.eloqua.com");
+            var client = new BaseClient(site, user, password, BulkUrl.Login);
 
             IRestResponse<AccountInfo> responseAccountInfo =
                 await client.ExecuteTaskAsync<AccountInfo>(new RestRequest("id", Method.GET));
@@ -70,60 +69,59 @@ namespace Eloqua.Api.Bulk
         }
 
         /// <summary>
-        /// Default SyncClient
+        /// Default <see cref="SyncClient"/>
         /// </summary>
         public SyncClient Syncs => _baseClient.Syncs;
+
+        /// <summary>
+        /// Default <see cref="Eloqua.Api.Bulk.Clients.ExportClient"/>
+        /// </summary>
+        public ExportClient ExportClient => _exportClient ?? (_exportClient = new ExportClient(_baseClient));
+
+        /// <summary>
+        /// Default <see cref="Eloqua.Api.Bulk.Clients.Activities.ActivityExportClient"/>
+        /// </summary>
+        public ActivityExportClient ActivityExportClient
+            => _activityExportClient ?? (_activityExportClient = new ActivityExportClient(_baseClient));
 
         #region contacts
 
         /// <summary>
-        /// Default ContactFieldClient
+        /// Default <see cref="ContactFieldClient"/>
         /// </summary>
         public ContactFieldClient ContactFields =>
             _contactFieldClient ?? (_contactFieldClient = new ContactFieldClient(_baseClient));
 
         /// <summary>
-        /// Default ContactFilterClient
+        /// Default <see cref="ContactFilterClient"/>
         /// </summary>
         public ContactFilterClient ContactFilters =>
             _contactFilterClient ?? (_contactFilterClient = new ContactFilterClient(_baseClient));
 
         /// <summary>
-        /// Default ContactExportClient
-        /// </summary>
-        public ContactExportClient ContactExport =>
-            _contactExportClient ?? (_contactExportClient = new ContactExportClient(_baseClient));
-
-        /// <summary>
-        /// Default ContactImportClient
+        /// Default <see cref="ContactImportClient"/>
         /// </summary>
         public ContactImportClient ContactImport =>
             _contactImportClient ?? (_contactImportClient = new ContactImportClient(_baseClient));
-
-        /// <summary>
-        /// Default ActivityExportClient
-        /// </summary>
-        public ActivityExportClient ActivityExportClient
-            => _activityExportClient ?? (_activityExportClient = new ActivityExportClient(_baseClient));
 
         #endregion
 
         #region custom objects
 
         /// <summary>
-        /// Default CustomObjectFieldClient
+        /// Default <see cref="CustomObjectFieldClient" />
         /// </summary>
         public CustomObjectFieldClient CustomObjectFields =>
             _customObjectFieldClient ?? (_customObjectFieldClient = new CustomObjectFieldClient(_baseClient));
 
         /// <summary>
-        /// Default CustomObjectExportClient
+        /// Default <see cref="CustomObjectExportClient" />
         /// </summary>
         public CustomObjectExportClient CustomObjectExport =>
             _customObjectExportClient ?? (_customObjectExportClient = new CustomObjectExportClient(_baseClient));
 
         /// <summary>
-        /// Default CustomObjectImportClient
+        /// Default <see cref="CustomObjectImportClient" />
         /// </summary>
         public CustomObjectImportClient CustomObjectImport =>
             _customObjectImportClient ?? (_customObjectImportClient = new CustomObjectImportClient(_baseClient));
@@ -133,25 +131,19 @@ namespace Eloqua.Api.Bulk
         #region accounts
 
         /// <summary>
-        /// Default AccountFieldClient
+        /// Default <see cref="AccountFieldClient" />
         /// </summary>
         public AccountFieldClient AccountFields =>
             _accountFieldClient ?? (_accountFieldClient = new AccountFieldClient(_baseClient));
 
         /// <summary>
-        /// Default AccountFilterClient
+        /// Default <see cref="AccountFilterClient" />
         /// </summary>
         public AccountFilterClient AccountFilters =>
             _accountFilterClient ?? (_accountFilterClient = new AccountFilterClient(_baseClient));
 
         /// <summary>
-        /// Default AccountExportClient
-        /// </summary>
-        public AccountExportClient AccountExport =>
-            _accountExportClient ?? (_accountExportClient = new AccountExportClient(_baseClient));
-
-        /// <summary>
-        /// Default AccountImportClient
+        /// Default <see cref="AccountImportClient" />
         /// </summary>
         public AccountImportClient AccountImport =>
             _accountImportClient ?? (_accountImportClient = new AccountImportClient(_baseClient));

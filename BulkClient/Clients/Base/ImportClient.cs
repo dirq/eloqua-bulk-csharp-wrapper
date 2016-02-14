@@ -35,7 +35,7 @@ namespace Eloqua.Api.Bulk.Clients.Base
         {
             var request = new RestRequest(Method.GET)
             {
-                Resource = syncUri + "/results",
+                Resource = $"{syncUri}/results",
                 RequestFormat = DataFormat.Json
             };
 
