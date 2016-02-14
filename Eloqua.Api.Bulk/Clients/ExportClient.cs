@@ -48,7 +48,7 @@ namespace Eloqua.Api.Bulk.Clients
 
             var issuedExportSync = new Sync
             {
-                Status = SyncStatusType.Pending,
+                Status = SyncStatus.Pending,
                 SyncedInstanceUri = issuedExport.Uri
             };
 
@@ -71,7 +71,7 @@ namespace Eloqua.Api.Bulk.Clients
         {
             Sync sync = await Client.Syncs.GetSyncAsync(syncId);
 
-            if (sync.Status == SyncStatusType.Success)
+            if (sync.Status == SyncStatus.Success)
             {
                 IRestResponse<ExportResult<T>> exportResponse =
                     await ExportDataAsync<ExportResult<T>>(sync.SyncedInstanceUri);

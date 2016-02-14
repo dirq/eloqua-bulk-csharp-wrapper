@@ -1,6 +1,6 @@
 ﻿namespace Eloqua.Api.Bulk.Models.Syncs
 {
-    public enum SyncStatusType
+    public enum SyncStatus
     {
         Pending = 0,
         Active = 1,

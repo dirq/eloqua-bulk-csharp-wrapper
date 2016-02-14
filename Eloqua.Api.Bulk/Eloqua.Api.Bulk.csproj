@@ -108,8 +108,7 @@
     <Compile Include="Models\Syncs\SyncAction.cs" />
     <Compile Include="Models\Syncs\SyncActionType.cs" />
     <Compile Include="Models\Syncs\SyncResult.cs" />
-    <Compile Include="Models\Syncs\SyncStatusType.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Models\Syncs\SyncStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\RestObject.cs" />
     <Compile Include="Validation\ResponseValidator.cs" />
