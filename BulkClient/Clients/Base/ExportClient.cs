@@ -28,7 +28,7 @@ namespace Eloqua.Api.Bulk.Clients.Base
         /// </summary>
         /// <param name="exportUri">The URI where the data shoud be retreived from</param>
         /// <returns>A response with its data in JSON format</returns>
-        public virtual async Task<IRestResponse> ExportDataAsync(string exportUri) =>
-            await Client.JsonData.ExportDataAsync(exportUri);
+        public virtual async Task<IRestResponse<T>> ExportDataAsync<T>(string exportUri) =>
+            await Client.JsonData.ExportDataAsync<T>(exportUri);
     }
 }

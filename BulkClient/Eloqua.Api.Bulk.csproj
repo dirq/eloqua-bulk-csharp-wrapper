@@ -44,6 +44,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -75,6 +76,11 @@
     <Compile Include="Clients\JsonDataClient.cs" />
     <Compile Include="Clients\SyncClient.cs" />
     <Compile Include="Exception\ValidationException.cs" />
+    <Compile Include="Models\Acitivity\Activity.cs" />
+    <Compile Include="Models\Acitivity\ActivityType.cs" />
+    <Compile Include="Models\Acitivity\AssetType.cs" />
+    <Compile Include="Models\Acitivity\EmailSendType.cs" />
+    <Compile Include="Models\ExportResult.cs" />
     <Compile Include="Models\Filter.cs" />
     <Compile Include="Clients\CustomObjects\CustomObjectFieldClient.cs" />
     <Compile Include="Models\CustomObjects\CustomObject.cs" />

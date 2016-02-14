@@ -12,7 +12,7 @@ namespace Eloqua.Api.Bulk.Clients
             _client = client;
         }
 
-        public async Task<IRestResponse> ExportDataAsync(string exportUri)
+        public async Task<IRestResponse<T>> ExportDataAsync<T>(string exportUri)
         {
             var request = new RestRequest
             {
@@ -20,7 +20,7 @@ namespace Eloqua.Api.Bulk.Clients
                 RequestFormat = DataFormat.Json
             };
 
-            return await _client.ExecuteTaskAsync(request);
+            return await _client.ExecuteTaskAsync<T>(request);
         }
     }
 }
