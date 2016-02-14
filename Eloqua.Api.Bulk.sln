@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eloqua.Api.Bulk.Tests", "BulkClientTests\Eloqua.Api.Bulk.Tests.csproj", "{71850950-929B-48B9-AD84-A1CE779EA651}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eloqua.Api.Bulk.Tests", "Eloqua.Api.Bulk.Tests\Eloqua.Api.Bulk.Tests.csproj", "{71850950-929B-48B9-AD84-A1CE779EA651}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eloqua.Api.Bulk", "BulkClient\Eloqua.Api.Bulk.csproj", "{750A47C6-B2C5-4943-B9D2-192D144BF2AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eloqua.Api.Bulk", "Eloqua.Api.Bulk\Eloqua.Api.Bulk.csproj", "{750A47C6-B2C5-4943-B9D2-192D144BF2AD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6D2BCA0C-3D3E-46C6-A2C5-A738724A4CF2}"
 	ProjectSection(SolutionItems) = preProject
