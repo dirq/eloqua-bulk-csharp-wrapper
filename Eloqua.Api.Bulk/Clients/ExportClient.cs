@@ -41,10 +41,11 @@ namespace Eloqua.Api.Bulk.Clients
         /// Issues an <see cref="Export"/> object and returns the object that can be used to know its state.
         /// </summary>
         /// <param name="exportToBeIssued">The export that is going to be processed</param>
+        /// <param name="exportUri">The URI of the export. Some of these are available at <see cref="BulkUrl"/></param>
         /// <returns>An object that lets you know if the export is done</returns>
-        public virtual async Task<Sync> IssueExport(Export exportToBeIssued)
+        public virtual async Task<Sync> IssueExport(Export exportToBeIssued, string exportUri)
         {
-            Export issuedExport = await CreateExportAsync(exportToBeIssued, BulkUrl.ActivityExports);
+            Export issuedExport = await CreateExportAsync(exportToBeIssued, exportUri);
 
             var issuedExportSync = new Sync
             {

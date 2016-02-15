@@ -2,15 +2,16 @@
 {
     /// <summary>
     /// URLs used for requests to the BULK API. Please note that those that include formatting are not listed here.
+    /// All these paths are relative.
     /// </summary>
-    internal static class BulkUrl
+    public static class BulkUrl
     {
-        internal const string Login = "https://login.eloqua.com";
+        public const string Login = "https://login.eloqua.com";
 
-        internal const string Syncs = "/syncs";
+        public const string Syncs = "/syncs";
 
-        internal const string ContactExports = "/contacts/exports";
-        internal const string ActivityExports = "/activities/exports";
-        internal const string AccountExports = "/account/exports";
+        public const string ContactExports = "/contacts/exports";
+        public const string ActivityExports = "/activities/exports";
+        public const string AccountExports = "/account/exports";
     }
 }

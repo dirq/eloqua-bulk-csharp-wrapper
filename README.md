@@ -83,7 +83,7 @@ include in your pull requests.
 		}
 	};
 	
-	Sync syncResult = await client.ExportClient.IssueExport(emailClickthroughExport);
+	Sync syncResult = await client.ExportClient.IssueExport(emailClickthroughExport, BulkUrl.ActivityExports);
 
 ### Get the data
 	ExportResult<Activity> exportedData;
