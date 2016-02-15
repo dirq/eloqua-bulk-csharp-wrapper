@@ -88,6 +88,58 @@ include in your pull requests.
 ### Get the data
 	ExportResult<Activity> exportedData;
 
+	Export exportResult = await client.ContactExport.CreateExportAsync(export);
+
+	var sync = new Sync
+	{
+		Status = SyncStatus.Pending,
+		SyncedInstanceUri = exportResult.Uri
+	};
+
+	Sync syncResult = await _client.ExportClient.CreateSyncAsync(sync);
+
+	// Currently, we don't have a class for the exported list of contacts. If you create one,
+	// please make a pull request :)
+	ExportResult<object> contacts = _client.ExportClient.ExportDataAsync<ExportResult<object>>(exportResult.uri);
+
+## Get Activity Data Example
+### Create Client
+	AccountInfo info = await BulkClient.GetAccountInfoAsync("MyCompany", "jhon", "P@ssw0rd!");
+	var client =
+		new BulkClient("MyCompany", "jhon", "P@ssw0rd!", info.Urls.Apis.Rest.Bulk.Replace("{version}", "2.0"));
+
+### Issue the export
+	var emailClickthroughExport = new Export
+	{
+		Name = "Example EmailClickthrough Activity Export",
+		Filter = "'{{Activity.CreatedAt}}' >= '2015-10-01' AND '{{Activity.Type}}' = 'EmailClickthrough''",
+		Fields = new Dictionary<string, string>
+		{
+			{ "ActivityId", "{{Activity.Id}}" },
+			{ "ActivityType", "{{Activity.Type}}" },
+			{ "ActivityDate", "{{Activity.CreatedAt}}" },
+			{ "EmailAddress", "{{Activity.Field(EmailAddress)}}" },
+			{ "ContactId", "{{Activity.Contact.Id}}" },
+			{ "IpAddress", "{{Activity.Field(IpAddress)}}" },
+			{ "VisitorId", "{{Activity.Visitor.Id}}" },
+			{ "EmailRecipientId", "{{Activity.Field(EmailRecipientId)}}" },
+			{ "AssetType", "{{Activity.Asset.Type}}" },
+			{ "AssetName", "{{Activity.Asset.Name}}" },
+			{ "AssetId", "{{Activity.Asset.Id}}" },
+			{ "SubjectLine", "{{Activity.Field(SubjectLine)}}" },
+			{ "EmailWebLink", "{{Activity.Field(EmailWebLink)}}" },
+			{ "VisitorExternalId", "{{Activity.Visitor.ExternalId}}" },
+			{ "CampaignId", "{{Activity.Campaign.Id}}" },
+			{ "ExternalId", "{{Activity.ExternalId}}" },
+			{ "EmailSendType", "{{Activity.Field(EmailSendType)}}" }
+		}
+	};
+	
+	Sync syncResult = await client.ExportClient.IssueExport(emailClickthroughExport);
+
+### Get the data
+	ExportResult<Activity> exportedData;
+
 	do
 	{
 		// This should not be executed so frequently. Here, I use a while loop to make the example simple
