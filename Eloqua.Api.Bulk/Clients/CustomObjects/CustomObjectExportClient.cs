@@ -29,7 +29,10 @@ namespace Eloqua.Api.Bulk.Clients.CustomObjects
         /// <param name="export">The export object to be created</param>
         /// <param name="customObjectId">The unique identifier of the custom object</param>
         /// <returns>The newly created export object</returns>
-        public async Task<Export> CreateExportAsync(Export export, int customObjectId) =>
-            await _exportClient.CreateExportAsync(export, $"/customObject/{customObjectId}/export");
+        public async Task<Export> CreateExportAsync(Export export, int customObjectId)
+        {
+            return await _exportClient.CreateExportAsync(
+                export, string.Format("/customObject/{0}/export", customObjectId));
+        }
     }
 }

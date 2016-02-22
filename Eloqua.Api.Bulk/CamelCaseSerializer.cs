@@ -7,7 +7,9 @@ namespace Eloqua.Api.Bulk
     /// </summary>
     public class CamelCaseSerializer : PocoJsonSerializerStrategy
     {
-        protected override string MapClrMemberNameToJsonFieldName(string clrPropertyName) =>
-            char.ToLowerInvariant(clrPropertyName[0]) + clrPropertyName.Substring(1);
+        protected override string MapClrMemberNameToJsonFieldName(string clrPropertyName)
+        {
+            return char.ToLowerInvariant(clrPropertyName[0]) + clrPropertyName.Substring(1);
+        }
     }
 }

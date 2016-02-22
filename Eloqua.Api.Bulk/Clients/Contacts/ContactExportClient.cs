@@ -28,7 +28,9 @@ namespace Eloqua.Api.Bulk.Clients.Contacts
         /// </summary>
         /// <param name="export">The export object to be created</param>
         /// <returns>The newly created export object</returns>
-        public async Task<Export> CreateExportAsync(Export export) =>
-            await _exportClient.CreateExportAsync(export, BulkUrl.ContactExports);
+        public async Task<Export> CreateExportAsync(Export export)
+        {
+            return await _exportClient.CreateExportAsync(export, BulkUrl.ContactExports);
+        }
     }
 }

@@ -73,44 +73,60 @@ namespace Eloqua.Api.Bulk
         /// <summary>
         /// Default <see cref="SyncClient"/>
         /// </summary>
-        public SyncClient Syncs => _baseClient.Syncs;
+        public SyncClient Syncs
+        {
+            get { return _baseClient.Syncs; }
+        }
 
         /// <summary>
         /// Default <see cref="Eloqua.Api.Bulk.Clients.ExportClient"/>
         /// </summary>
-        public ExportClient ExportClient => _exportClient ?? (_exportClient = new ExportClient(_baseClient));
+        public ExportClient ExportClient
+        {
+            get { return _exportClient ?? (_exportClient = new ExportClient(_baseClient)); }
+        }
 
         /// <summary>
         /// Default <see cref="Eloqua.Api.Bulk.Clients.Activities.ActivityExportClient"/>
         /// </summary>
         public ActivityExportClient ActivityExportClient
-            => _activityExportClient ?? (_activityExportClient = new ActivityExportClient(_baseClient));
+        {
+            get { return _activityExportClient ?? (_activityExportClient = new ActivityExportClient(_baseClient)); }
+        }
 
         #region contacts
 
         /// <summary>
         /// Default <see cref="ContactFieldClient"/>
         /// </summary>
-        public ContactFieldClient ContactFields =>
-            _contactFieldClient ?? (_contactFieldClient = new ContactFieldClient(_baseClient));
+        public ContactFieldClient ContactFields
+        {
+            get { return _contactFieldClient ?? (_contactFieldClient = new ContactFieldClient(_baseClient)); }
+        }
 
         /// <summary>
         /// Default <see cref="ContactExportClient"/>
         /// </summary>
-        public ContactExportClient ContactExport =>
-            _contactExportClient ?? (_contactExportClient = new ContactExportClient(_baseClient));
+        public ContactExportClient ContactExport
+        {
+            get { return _contactExportClient ?? (_contactExportClient = new ContactExportClient(_baseClient)); }
+        }
 
         /// <summary>
         /// Default <see cref="ContactFilterClient"/>
         /// </summary>
-        public ContactFilterClient ContactFilters =>
-            _contactFilterClient ?? (_contactFilterClient = new ContactFilterClient(_baseClient));
+        public ContactFilterClient ContactFilters
+        {
+            get { return _contactFilterClient ?? (_contactFilterClient = new ContactFilterClient(_baseClient)); }
+        }
 
         /// <summary>
         /// Default <see cref="ContactImportClient"/>
         /// </summary>
-        public ContactImportClient ContactImport =>
-            _contactImportClient ?? (_contactImportClient = new ContactImportClient(_baseClient));
+        public ContactImportClient ContactImport
+        {
+            get { return _contactImportClient ?? (_contactImportClient = new ContactImportClient(_baseClient)); }
+        }
 
         #endregion
 
@@ -119,20 +135,37 @@ namespace Eloqua.Api.Bulk
         /// <summary>
         /// Default <see cref="CustomObjectFieldClient" />
         /// </summary>
-        public CustomObjectFieldClient CustomObjectFields =>
-            _customObjectFieldClient ?? (_customObjectFieldClient = new CustomObjectFieldClient(_baseClient));
+        public CustomObjectFieldClient CustomObjectFields
+        {
+            get
+            {
+                return _customObjectFieldClient ?? (_customObjectFieldClient = new CustomObjectFieldClient(_baseClient));
+            }
+        }
 
         /// <summary>
         /// Default <see cref="CustomObjectExportClient" />
         /// </summary>
-        public CustomObjectExportClient CustomObjectExport =>
-            _customObjectExportClient ?? (_customObjectExportClient = new CustomObjectExportClient(_baseClient));
+        public CustomObjectExportClient CustomObjectExport
+        {
+            get
+            {
+                return _customObjectExportClient ??
+                       (_customObjectExportClient = new CustomObjectExportClient(_baseClient));
+            }
+        }
 
         /// <summary>
         /// Default <see cref="CustomObjectImportClient" />
         /// </summary>
-        public CustomObjectImportClient CustomObjectImport =>
-            _customObjectImportClient ?? (_customObjectImportClient = new CustomObjectImportClient(_baseClient));
+        public CustomObjectImportClient CustomObjectImport
+        {
+            get
+            {
+                return _customObjectImportClient ??
+                       (_customObjectImportClient = new CustomObjectImportClient(_baseClient));
+            }
+        }
 
         #endregion
 
@@ -141,20 +174,26 @@ namespace Eloqua.Api.Bulk
         /// <summary>
         /// Default <see cref="AccountFieldClient" />
         /// </summary>
-        public AccountFieldClient AccountFields =>
-            _accountFieldClient ?? (_accountFieldClient = new AccountFieldClient(_baseClient));
+        public AccountFieldClient AccountFields
+        {
+            get { return _accountFieldClient ?? (_accountFieldClient = new AccountFieldClient(_baseClient)); }
+        }
 
         /// <summary>
         /// Default <see cref="AccountFilterClient" />
         /// </summary>
-        public AccountFilterClient AccountFilters =>
-            _accountFilterClient ?? (_accountFilterClient = new AccountFilterClient(_baseClient));
+        public AccountFilterClient AccountFilters
+        {
+            get { return _accountFilterClient ?? (_accountFilterClient = new AccountFilterClient(_baseClient)); }
+        }
 
         /// <summary>
         /// Default <see cref="AccountImportClient" />
         /// </summary>
-        public AccountImportClient AccountImport =>
-            _accountImportClient ?? (_accountImportClient = new AccountImportClient(_baseClient));
+        public AccountImportClient AccountImport
+        {
+            get { return _accountImportClient ?? (_accountImportClient = new AccountImportClient(_baseClient)); }
+        }
 
         #endregion
     }

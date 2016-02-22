@@ -19,7 +19,8 @@ namespace Eloqua.Api.Bulk.Clients.Base
         {
             var request = new RestRequest(Method.GET)
             {
-                Resource = $"/{resourceName}/fields?search={searchTerm}&page={page}&pageSize={pageSize}"
+                Resource = string.Format("/{0}/fields?search={1}&page={2}&pageSize={3}",
+                    resourceName, searchTerm, page, pageSize)
             };
 
             IRestResponse<SearchResponse<Filter>> response =

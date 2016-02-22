@@ -13,14 +13,16 @@ namespace Eloqua.Api.Bulk.Clients.CustomObjects
         {
         }
 
-        public async Task<Import> CreateImportAsync(Import import, int customObjectId) =>
-            await base.CreateImportAsync(import, $"customObject/{customObjectId}");
+        public async Task<Import> CreateImportAsync(Import import, int customObjectId)
+        {
+            return await base.CreateImportAsync(import, string.Format("customObject/{0}", customObjectId));
+        }
 
         public async Task<Sync> ImportDataAsync(string importUri, List<Dictionary<string, string>> data)
         {
             var request = new RestRequest(Method.POST)
             {
-                Resource = $"{importUri}/data",
+                Resource = string.Format("{0}/data", importUri),
                 RequestFormat = DataFormat.Json
             };
 

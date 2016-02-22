@@ -15,7 +15,8 @@ namespace Eloqua.Api.Bulk.Clients.Base
         {
             using (FileStream fileStream = new FileStream(fileToUpload, FileMode.Open))
             {
-                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create($"{Client.BaseUrl}{importUri}/data");
+                HttpWebRequest httpWebRequest =
+                    (HttpWebRequest)WebRequest.Create(string.Format("{0}{1}/data", Client.BaseUrl, importUri));
                 httpWebRequest.Method = "POST";
                 httpWebRequest.ContentLength = fileStream.Length;
                 httpWebRequest.ContentType = "text/csv";

@@ -27,15 +27,20 @@ namespace Eloqua.Api.Bulk.Clients
         /// </summary>
         /// <param name="sync">The synching object to be created</param>
         /// <returns>The newly created synching object</returns>
-        public virtual async Task<Sync> CreateSyncAsync(Sync sync) => await Client.Syncs.CreateSyncAsync(sync);
+        public virtual async Task<Sync> CreateSyncAsync(Sync sync)
+        {
+            return await Client.Syncs.CreateSyncAsync(sync);
+        }
 
         /// <summary>
         /// Exports the data from the given URI in JSON format
         /// </summary>
         /// <param name="exportUri">The URI where the data shoud be retreived from</param>
         /// <returns>A response with its data in JSON format</returns>
-        public virtual async Task<IRestResponse<T>> ExportDataAsync<T>(string exportUri) =>
-            await Client.JsonData.ExportDataAsync<T>(exportUri);
+        public virtual async Task<IRestResponse<T>> ExportDataAsync<T>(string exportUri)
+        {
+            return await Client.JsonData.ExportDataAsync<T>(exportUri);
+        }
 
         /// <summary>
         /// Issues an <see cref="Export"/> object and returns the object that can be used to know its state.

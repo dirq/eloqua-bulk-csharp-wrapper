@@ -30,7 +30,7 @@ namespace Eloqua.Api.Bulk.Clients
 
         public async Task<Sync> GetSyncAsync(int syncId)
         {
-            var request = new RestRequest(Method.GET) {Resource = $"/syncs/{syncId}"};
+            var request = new RestRequest(Method.GET) {Resource = string.Format("/syncs/{0}", syncId) };
 
             IRestResponse<Sync> syncResponse = await _client.ExecuteTaskAsync<Sync>(request);
 

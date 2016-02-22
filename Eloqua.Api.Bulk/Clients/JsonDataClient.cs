@@ -16,7 +16,7 @@ namespace Eloqua.Api.Bulk.Clients
         {
             var request = new RestRequest
             {
-                Resource = $"{exportUri}/data",
+                Resource = string.Format("{0}/data", exportUri),
                 RequestFormat = DataFormat.Json
             };
 

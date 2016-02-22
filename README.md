@@ -10,7 +10,8 @@ library. The main differences are:
 	convention).
 	- Some of the requests are strongly typed. Please note that enums are actually strings because Eloqua does not
 	offer documentation about all its possible values. Those that are known are in static classes.
-	- This is built with C#6 features, but this doesn't affect the usage.
+	- This branch is built with C#5, but I encourage you to use the code from the master branch (which is written with
+	C#6).
 	- The root namespace is Eloqua.Api.Bulk instead of BulkClient.
 	- RestSharp 105.2.3 is used instead of 104.1.
 
@@ -155,8 +156,9 @@ tested (because the Eloqua account I have does not allow it, sorry :/).
 - Make strongly typed the fields for the request (look at how it is done right now in the activity example above).
 - More support for Activities.
 
-The only guideline to contribute is that you should follow the patterns of the project (so the API is consistent),
-and that you document the classes you create (so it is easy for everyone else to understand what you did).
+The only guidelines to contribute are that you should follow the patterns of the project (so the API is consistent),
+that you document the classes you create (so it is easy for everyone else to understand what you did), and that you
+also make a pull request to master branch using C#6 features.
 
 ## License
 	Copyright [2016] [Jonathan Soto]

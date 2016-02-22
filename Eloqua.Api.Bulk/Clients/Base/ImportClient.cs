@@ -19,7 +19,7 @@ namespace Eloqua.Api.Bulk.Clients.Base
         {
             var request = new RestRequest(Method.POST)
             {
-                Resource = $"/{resourceName}/import",
+                Resource = string.Format("/{0}/import", resourceName),
                 RequestFormat = DataFormat.Json,
                 RootElement = "import"
             };
@@ -35,7 +35,7 @@ namespace Eloqua.Api.Bulk.Clients.Base
         {
             var request = new RestRequest(Method.GET)
             {
-                Resource = $"{syncUri}/results",
+                Resource = string.Format("{0}/results", syncUri),
                 RequestFormat = DataFormat.Json
             };
 

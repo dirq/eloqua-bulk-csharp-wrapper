@@ -17,7 +17,8 @@ namespace Eloqua.Api.Bulk.Clients.Accounts
         {
             var request = new RestRequest(Method.GET)
             {
-                Resource = $"/account/fields?search={searchTerm}&page={page}&pageSize={pageSize}"
+                Resource =
+                    string.Format("/account/fields?search={0}&page={1}&pageSize={2}", searchTerm, page, pageSize)
             };
 
             IRestResponse<SearchResponse<Field>> fieldSearchResponse =

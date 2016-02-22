@@ -10,6 +10,9 @@ namespace Eloqua.Api.Bulk.Clients.Accounts
         {
         }
 
-        public async Task<Import> CreateImportAsync(Import import) => await base.CreateImportAsync(import, "account");
+        public async Task<Import> CreateImportAsync(Import import)
+        {
+            return await base.CreateImportAsync(import, "account");
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace Eloqua.Api.Bulk.Clients.CustomObjects
         {
             var request = new RestRequest(Method.GET)
             {
-                Resource = $"/customObjects?search={searchTerm}&page={page}&pageSize={pageSize}"
+                Resource = string.Format("/customObjects?search={0}&page={1}&pageSize={2}", searchTerm, page, pageSize)
             };
 
             IRestResponse<SearchResponse<CustomObjectSearchResponse>> customObjectSearchResponse =

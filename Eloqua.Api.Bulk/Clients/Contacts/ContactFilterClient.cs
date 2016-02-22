@@ -11,7 +11,9 @@ namespace Eloqua.Api.Bulk.Clients.Contacts
         {
         }
 
-        public async Task<List<Filter>> SearchAsync(string searchTerm, int page, int pageSize) =>
-            await base.SearchAsync(searchTerm, page, pageSize, "contact");
+        public async Task<List<Filter>> SearchAsync(string searchTerm, int page, int pageSize)
+        {
+            return await base.SearchAsync(searchTerm, page, pageSize, "contact");
+        }
     }
 }
