@@ -5,7 +5,7 @@ using Eloqua.Api.Bulk.Models.Syncs;
 namespace Eloqua.Api.Bulk.Models.Exports
 {
     /// <summary>
-    /// Represents data that is retrieved from the Bulk API. It can be for example, the result of an activity.
+    ///     Represents data that is retrieved from the Bulk API. It can be for example, the result of an activity.
     /// </summary>
     public class Export
     {

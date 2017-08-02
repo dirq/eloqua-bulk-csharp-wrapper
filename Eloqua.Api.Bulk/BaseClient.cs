@@ -9,10 +9,12 @@ namespace Eloqua.Api.Bulk
 {
     public class BaseClient : RestClient
     {
-        private SyncClient _syncClient;
-        private JsonDataClient _jsonDataClient;
+        private SyncClient syncClient;
+        private JsonDataClient jsonDataClient;
 
-        protected BaseClient() {}
+        protected BaseClient()
+        {
+        }
 
         public BaseClient(string site, string user, string password, string baseUrl) : base(baseUrl)
         {
@@ -24,7 +26,7 @@ namespace Eloqua.Api.Bulk
 
         public override async Task<IRestResponse<T>> ExecuteTaskAsync<T>(IRestRequest request)
         {
-            IRestResponse<T> response = await base.ExecuteTaskAsync<T>(request);
+            var response = await base.ExecuteTaskAsync<T>(request);
 
             if (response.ResponseStatus != ResponseStatus.Completed || (int)response.StatusCode >= 400)
             {
@@ -34,8 +36,8 @@ namespace Eloqua.Api.Bulk
             return response;
         }
 
-        public SyncClient Syncs => _syncClient ?? (_syncClient = new SyncClient(this));
+        public SyncClient Syncs => syncClient ?? (syncClient = new SyncClient(this));
 
-        public JsonDataClient JsonData => _jsonDataClient ?? (_jsonDataClient = new JsonDataClient(this));
+        public JsonDataClient JsonData => jsonDataClient ?? (jsonDataClient = new JsonDataClient(this));
     }
 }

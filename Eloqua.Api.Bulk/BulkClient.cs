@@ -1,61 +1,61 @@
 ﻿using System.Threading.Tasks;
 using Eloqua.Api.Bulk.Clients;
-using RestSharp;
 using Eloqua.Api.Bulk.Clients.Accounts;
 using Eloqua.Api.Bulk.Clients.Activities;
 using Eloqua.Api.Bulk.Clients.Contacts;
 using Eloqua.Api.Bulk.Clients.CustomObjects;
 using Eloqua.Api.Bulk.Models.Login;
+using RestSharp;
 
 namespace Eloqua.Api.Bulk
 {
     /// <summary>
-    /// Entry point of the wrapper. This is the proxy point to access the available services exposed.
+    ///     Entry point of the wrapper. This is the proxy point to access the available services exposed.
     /// </summary>
     public class BulkClient
     {
-        private readonly BaseClient _baseClient;
+        private readonly BaseClient baseClient;
 
-        private ExportClient _exportClient;
+        private ExportClient exportClient;
 
-        private ContactExportClient _contactExportClient;
-        private ContactFieldClient _contactFieldClient;
-        private ContactFilterClient _contactFilterClient;
-        private ContactImportClient _contactImportClient;
-        private ActivityExportClient _activityExportClient;
+        private ContactExportClient contactExportClient;
+        private ContactFieldClient contactFieldClient;
+        private ContactFilterClient contactFilterClient;
+        private ContactImportClient contactImportClient;
+        private ActivityExportClient activityExportClient;
 
-        private CustomObjectFieldClient _customObjectFieldClient;
-        private CustomObjectExportClient _customObjectExportClient;
-        private CustomObjectImportClient _customObjectImportClient;
+        private CustomObjectFieldClient customObjectFieldClient;
+        private CustomObjectExportClient customObjectExportClient;
+        private CustomObjectImportClient customObjectImportClient;
 
-        private AccountFieldClient _accountFieldClient;
-        private AccountFilterClient _accountFilterClient;
-        private AccountImportClient _accountImportClient;
+        private AccountFieldClient accountFieldClient;
+        private AccountFilterClient accountFilterClient;
+        private AccountImportClient accountImportClient;
 
         /// <summary>
-        /// Creates an instance of the client to access Bulk version 2 API.
+        ///     Creates an instance of the client to access Bulk version 2 API.
         /// </summary>
         /// <param name="site">
-        /// The site for accessing Eloqua services, this is tipically the company name. This is the same used to access
-        /// Eloqua website.
+        ///     The site for accessing Eloqua services, this is tipically the company name. This is the same used to access
+        ///     Eloqua website.
         /// </param>
         /// <param name="user">The username. This is the same used to access Eloqua website.</param>
         /// <param name="password">The password of the account. This is the same used to access Eloqua website.</param>
         /// <param name="baseUrl">
-        /// The base URL for the requests. This is something like https://secure.p01.eloqua.com/API/Bulk/2.0/. You can
-        /// get the right one for a given account with <see cref="GetAccountInfoAsync"/> method.
+        ///     The base URL for the requests. This is something like https://secure.p01.eloqua.com/API/Bulk/2.0/. You can
+        ///     get the right one for a given account with <see cref="GetAccountInfoAsync" /> method.
         /// </param>
         public BulkClient(string site, string user, string password, string baseUrl)
         {
-            _baseClient = new BaseClient(site, user, password, baseUrl);
+            baseClient = new BaseClient(site, user, password, baseUrl);
         }
 
         /// <summary>
-        /// Returns the information for a given Eloqua account.
+        ///     Returns the information for a given Eloqua account.
         /// </summary>
         /// <param name="site">
-        /// The site for accessing Eloqua services, this is tipically the company name. This is the same used to access
-        /// Eloqua website.
+        ///     The site for accessing Eloqua services, this is tipically the company name. This is the same used to access
+        ///     Eloqua website.
         /// </param>
         /// <param name="user">The username. This is the same used to access Eloqua website.</param>
         /// <param name="password">The password of the account. This is the same used to access Eloqua website.</param>
@@ -64,97 +64,97 @@ namespace Eloqua.Api.Bulk
         {
             var client = new BaseClient(site, user, password, BulkUrl.Login);
 
-            IRestResponse<AccountInfo> responseAccountInfo =
+            var responseAccountInfo =
                 await client.ExecuteTaskAsync<AccountInfo>(new RestRequest("id", Method.GET));
 
             return responseAccountInfo.Data;
         }
 
         /// <summary>
-        /// Default <see cref="SyncClient"/>
+        ///     Default <see cref="SyncClient" />
         /// </summary>
-        public SyncClient Syncs => _baseClient.Syncs;
+        public SyncClient Syncs => baseClient.Syncs;
 
         /// <summary>
-        /// Default <see cref="Eloqua.Api.Bulk.Clients.ExportClient"/>
+        ///     Default <see cref="Eloqua.Api.Bulk.Clients.ExportClient" />
         /// </summary>
-        public ExportClient ExportClient => _exportClient ?? (_exportClient = new ExportClient(_baseClient));
+        public ExportClient ExportClient => exportClient ?? (exportClient = new ExportClient(baseClient));
 
         /// <summary>
-        /// Default <see cref="Eloqua.Api.Bulk.Clients.Activities.ActivityExportClient"/>
+        ///     Default <see cref="Eloqua.Api.Bulk.Clients.Activities.ActivityExportClient" />
         /// </summary>
         public ActivityExportClient ActivityExportClient
-            => _activityExportClient ?? (_activityExportClient = new ActivityExportClient(_baseClient));
+            => activityExportClient ?? (activityExportClient = new ActivityExportClient(baseClient));
 
         #region contacts
 
         /// <summary>
-        /// Default <see cref="ContactFieldClient"/>
+        ///     Default <see cref="ContactFieldClient" />
         /// </summary>
         public ContactFieldClient ContactFields =>
-            _contactFieldClient ?? (_contactFieldClient = new ContactFieldClient(_baseClient));
+            contactFieldClient ?? (contactFieldClient = new ContactFieldClient(baseClient));
 
         /// <summary>
-        /// Default <see cref="ContactExportClient"/>
+        ///     Default <see cref="ContactExportClient" />
         /// </summary>
         public ContactExportClient ContactExport =>
-            _contactExportClient ?? (_contactExportClient = new ContactExportClient(_baseClient));
+            contactExportClient ?? (contactExportClient = new ContactExportClient(baseClient));
 
         /// <summary>
-        /// Default <see cref="ContactFilterClient"/>
+        ///     Default <see cref="ContactFilterClient" />
         /// </summary>
         public ContactFilterClient ContactFilters =>
-            _contactFilterClient ?? (_contactFilterClient = new ContactFilterClient(_baseClient));
+            contactFilterClient ?? (contactFilterClient = new ContactFilterClient(baseClient));
 
         /// <summary>
-        /// Default <see cref="ContactImportClient"/>
+        ///     Default <see cref="ContactImportClient" />
         /// </summary>
         public ContactImportClient ContactImport =>
-            _contactImportClient ?? (_contactImportClient = new ContactImportClient(_baseClient));
+            contactImportClient ?? (contactImportClient = new ContactImportClient(baseClient));
 
         #endregion
 
         #region custom objects
 
         /// <summary>
-        /// Default <see cref="CustomObjectFieldClient" />
+        ///     Default <see cref="CustomObjectFieldClient" />
         /// </summary>
         public CustomObjectFieldClient CustomObjectFields =>
-            _customObjectFieldClient ?? (_customObjectFieldClient = new CustomObjectFieldClient(_baseClient));
+            customObjectFieldClient ?? (customObjectFieldClient = new CustomObjectFieldClient(baseClient));
 
         /// <summary>
-        /// Default <see cref="CustomObjectExportClient" />
+        ///     Default <see cref="CustomObjectExportClient" />
         /// </summary>
         public CustomObjectExportClient CustomObjectExport =>
-            _customObjectExportClient ?? (_customObjectExportClient = new CustomObjectExportClient(_baseClient));
+            customObjectExportClient ?? (customObjectExportClient = new CustomObjectExportClient(baseClient));
 
         /// <summary>
-        /// Default <see cref="CustomObjectImportClient" />
+        ///     Default <see cref="CustomObjectImportClient" />
         /// </summary>
         public CustomObjectImportClient CustomObjectImport =>
-            _customObjectImportClient ?? (_customObjectImportClient = new CustomObjectImportClient(_baseClient));
+            customObjectImportClient ?? (customObjectImportClient = new CustomObjectImportClient(baseClient));
 
         #endregion
 
         #region accounts
 
         /// <summary>
-        /// Default <see cref="AccountFieldClient" />
+        ///     Default <see cref="AccountFieldClient" />
         /// </summary>
         public AccountFieldClient AccountFields =>
-            _accountFieldClient ?? (_accountFieldClient = new AccountFieldClient(_baseClient));
+            accountFieldClient ?? (accountFieldClient = new AccountFieldClient(baseClient));
 
         /// <summary>
-        /// Default <see cref="AccountFilterClient" />
+        ///     Default <see cref="AccountFilterClient" />
         /// </summary>
         public AccountFilterClient AccountFilters =>
-            _accountFilterClient ?? (_accountFilterClient = new AccountFilterClient(_baseClient));
+            accountFilterClient ?? (accountFilterClient = new AccountFilterClient(baseClient));
 
         /// <summary>
-        /// Default <see cref="AccountImportClient" />
+        ///     Default <see cref="AccountImportClient" />
         /// </summary>
         public AccountImportClient AccountImport =>
-            _accountImportClient ?? (_accountImportClient = new AccountImportClient(_baseClient));
+            accountImportClient ?? (accountImportClient = new AccountImportClient(baseClient));
 
         #endregion
     }

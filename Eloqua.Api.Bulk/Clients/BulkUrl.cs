@@ -1,8 +1,8 @@
 ﻿namespace Eloqua.Api.Bulk.Clients
 {
     /// <summary>
-    /// URLs used for requests to the BULK API. Please note that those that include formatting are not listed here.
-    /// All these paths are relative.
+    ///     URLs used for requests to the BULK API. Please note that those that include formatting are not listed here.
+    ///     All these paths are relative.
     /// </summary>
     public static class BulkUrl
     {

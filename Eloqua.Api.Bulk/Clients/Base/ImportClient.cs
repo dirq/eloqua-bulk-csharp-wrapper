@@ -26,7 +26,7 @@ namespace Eloqua.Api.Bulk.Clients.Base
 
             request.AddBody(import);
 
-            IRestResponse<Import> importResponse = await Client.ExecuteTaskAsync<Import>(request);
+            var importResponse = await Client.ExecuteTaskAsync<Import>(request);
 
             return importResponse.Data;
         }
@@ -39,7 +39,7 @@ namespace Eloqua.Api.Bulk.Clients.Base
                 RequestFormat = DataFormat.Json
             };
 
-            IRestResponse<SearchResponse<SyncResult>> restResponse =
+            var restResponse =
                 await Client.ExecuteTaskAsync<SearchResponse<SyncResult>>(request);
 
             return restResponse.Data;

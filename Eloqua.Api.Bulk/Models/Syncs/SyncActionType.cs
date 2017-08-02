@@ -7,6 +7,6 @@
         Subscribe = 3,
         Unsubscribe = 4,
         MarkActive = 5,
-        MarkComplete = 6,
+        MarkComplete = 6
     }
 }

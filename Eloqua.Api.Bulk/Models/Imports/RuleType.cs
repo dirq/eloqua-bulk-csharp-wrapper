@@ -5,6 +5,6 @@
         Always,
         IfNewIsNotNull,
         IfExistingIsNull,
-        UseFieldRule,
+        UseFieldRule
     }
 }

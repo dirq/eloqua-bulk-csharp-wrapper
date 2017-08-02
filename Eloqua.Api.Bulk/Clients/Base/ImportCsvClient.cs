@@ -13,9 +13,9 @@ namespace Eloqua.Api.Bulk.Clients.Base
 
         public async Task ImportDataFromCsvAsync(string importUri, string fileToUpload, string username, string password)
         {
-            using (FileStream fileStream = new FileStream(fileToUpload, FileMode.Open))
+            using (var fileStream = new FileStream(fileToUpload, FileMode.Open))
             {
-                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create($"{Client.BaseUrl}{importUri}/data");
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create($"{Client.BaseUrl}{importUri}/data");
                 httpWebRequest.Method = "POST";
                 httpWebRequest.ContentLength = fileStream.Length;
                 httpWebRequest.ContentType = "text/csv";
@@ -24,7 +24,7 @@ namespace Eloqua.Api.Bulk.Clients.Base
 
                 using (Stream reqStream = await httpWebRequest.GetRequestStreamAsync())
                 {
-                    byte[] inData = new byte[fileStream.Length];
+                    var inData = new byte[fileStream.Length];
 
                     reqStream.Write(inData, 0, (int)fileStream.Length);
 

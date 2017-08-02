@@ -4,7 +4,7 @@ using Eloqua.Api.Bulk.Models.Exports;
 namespace Eloqua.Api.Bulk.Models.Syncs
 {
     /// <summary>
-    /// Serves to know the state of a process being made, like a <see cref="Export"/> being processed.
+    ///     Serves to know the state of a process being made, like a <see cref="Export" /> being processed.
     /// </summary>
     public class Sync
     {
@@ -17,9 +17,9 @@ namespace Eloqua.Api.Bulk.Models.Syncs
         public string Uri { get; set; }
 
         /// <summary>
-        /// Returns the id of this sync taking it out from the <see cref="Uri"/>
+        ///     Returns the id of this sync taking it out from the <see cref="Uri" />
         /// </summary>
-        /// <returns>The unique identifier of this sync extracted from the <see cref="Uri"/></returns>
+        /// <returns>The unique identifier of this sync extracted from the <see cref="Uri" /></returns>
         public int? GetId()
         {
             int id;

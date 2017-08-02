@@ -26,7 +26,7 @@ namespace Eloqua.Api.Bulk.Clients.CustomObjects
 
             request.AddBody(data);
 
-            IRestResponse<Sync> syncResponse = await Client.ExecuteTaskAsync<Sync>(request);
+            var syncResponse = await Client.ExecuteTaskAsync<Sync>(request);
 
             return syncResponse.Data;
         }

@@ -22,7 +22,7 @@ namespace Eloqua.Api.Bulk.Clients.Base
                 Resource = $"/{resourceName}/fields?search={searchTerm}&page={page}&pageSize={pageSize}"
             };
 
-            IRestResponse<SearchResponse<Filter>> response =
+            var response =
                 await Client.ExecuteTaskAsync<SearchResponse<Filter>>(request);
 
             return response.Data.Elements;

@@ -6,11 +6,11 @@ namespace Eloqua.Api.Bulk.Clients
 {
     public class SyncClient
     {
-        readonly BaseClient _client;
+        readonly BaseClient client;
 
         public SyncClient(BaseClient client)
         {
-            _client = client;
+            this.client = client;
         }
 
         public async Task<Sync> CreateSyncAsync(Sync sync)
@@ -23,7 +23,7 @@ namespace Eloqua.Api.Bulk.Clients
 
             request.AddBody(sync);
 
-            IRestResponse<Sync> syncResponse = await _client.ExecuteTaskAsync<Sync>(request);
+            var syncResponse = await client.ExecuteTaskAsync<Sync>(request);
 
             return syncResponse.Data;
         }
@@ -32,7 +32,7 @@ namespace Eloqua.Api.Bulk.Clients
         {
             var request = new RestRequest(Method.GET) {Resource = $"/syncs/{syncId}"};
 
-            IRestResponse<Sync> syncResponse = await _client.ExecuteTaskAsync<Sync>(request);
+            var syncResponse = await client.ExecuteTaskAsync<Sync>(request);
 
             return syncResponse.Data;
         }

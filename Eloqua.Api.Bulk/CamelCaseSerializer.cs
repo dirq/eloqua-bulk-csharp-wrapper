@@ -3,7 +3,7 @@
 namespace Eloqua.Api.Bulk
 {
     /// <summary>
-    /// Serializes property names in camelCase format rather than PascalCase
+    ///     Serializes property names in camelCase format rather than PascalCase
     /// </summary>
     public class CamelCaseSerializer : PocoJsonSerializerStrategy
     {

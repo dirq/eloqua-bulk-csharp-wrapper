@@ -147,6 +147,9 @@ include in your pull requests.
 		exportedData = await client.ExportClient.GetExportResultIfFinished<Activity>(syncResult.GetId().Value);
 	} while (exportedData == null);
 
+### More reading  
+https://community.oracle.com/community/topliners/code-it/blog/2012/07/24/eloqua-rest-api--c-client 
+
 
 ## Contributing
 Please feel free to contribute to this repository. There are a lot of improvements oportunities, like:

@@ -5,11 +5,11 @@ namespace Eloqua.Api.Bulk.Clients
 {
     public class JsonDataClient
     {
-        readonly RestClient _client;
+        readonly RestClient client;
 
         public JsonDataClient(RestClient client)
         {
-            _client = client;
+            this.client = client;
         }
 
         public async Task<IRestResponse<T>> ExportDataAsync<T>(string exportUri)
@@ -20,7 +20,7 @@ namespace Eloqua.Api.Bulk.Clients
                 RequestFormat = DataFormat.Json
             };
 
-            return await _client.ExecuteTaskAsync<T>(request);
+            return await client.ExecuteTaskAsync<T>(request);
         }
     }
 }

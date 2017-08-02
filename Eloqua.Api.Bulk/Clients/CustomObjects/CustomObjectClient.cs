@@ -1,17 +1,17 @@
 ﻿using System.Threading.Tasks;
-using RestSharp;
 using Eloqua.Api.Bulk.Models;
 using Eloqua.Api.Bulk.Models.CustomObjects;
+using RestSharp;
 
 namespace Eloqua.Api.Bulk.Clients.CustomObjects
 {
     public class CustomObjectClient
     {
-        private readonly BaseClient _client;
+        private readonly BaseClient client;
 
         public CustomObjectClient(BaseClient client)
         {
-            _client = client;
+            this.client = client;
         }
 
         public async Task<SearchResponse<CustomObjectSearchResponse>> SearchCustomDataObjectsAsync(
@@ -22,8 +22,8 @@ namespace Eloqua.Api.Bulk.Clients.CustomObjects
                 Resource = $"/customObjects?search={searchTerm}&page={page}&pageSize={pageSize}"
             };
 
-            IRestResponse<SearchResponse<CustomObjectSearchResponse>> customObjectSearchResponse =
-                await _client.ExecuteTaskAsync<SearchResponse<CustomObjectSearchResponse>>(request);
+            var customObjectSearchResponse =
+                await client.ExecuteTaskAsync<SearchResponse<CustomObjectSearchResponse>>(request);
 
             return customObjectSearchResponse.Data;
         }
